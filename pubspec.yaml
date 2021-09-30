@@ -1,0 +1,57 @@
+name: cryptospace
+description: A new Flutter project.
+
+# Prevent accidental publishing to pub.dev.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  hooks_riverpod: 1.0.0-dev.6
+  flutter_riverpod: 1.0.0-dev.6
+  dio: ^4.0.0
+  flutter_dotenv: ^5.0.0
+  settings_ui: ^1.0.0
+  auto_size_text: ^3.0.0-nullsafety.0
+  # flutter_secure_storage: ^4.1.0
+  easy_localization: ^3.0.0
+  freezed_annotation:
+  flutter_candlesticks:
+  http: 
+  carousel_slider: ^4.0.0-nullsafety.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Enable generation of localized Strings from arb files.
+  generate: true
+
+  assets:
+    # Add assets from the images directory to the application.
+    - assets/images/
+  fonts:
+    - family: Coda
+      fonts:
+        - asset: assets/fonts/Coda-Regular.ttf
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand-Regular.ttf
+        - asset: assets/fonts/Quicksand-SemiBold.ttf
+        
