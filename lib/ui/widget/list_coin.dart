@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ListCoin extends StatefulWidget {
-  ListCoin({Key? key}) : super(key: key);
+  const ListCoin({Key? key}) : super(key: key);
   @override
   State<ListCoin> createState() => _ListCoinState();
 }

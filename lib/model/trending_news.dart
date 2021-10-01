@@ -1,7 +1,8 @@
-class TrendingNews {
+class TopNews {
   final String imgSrc;
   final String title;
+  final String source;
   final String link;
 
-  TrendingNews(this.imgSrc, this.title, this.link);
+  TopNews(this.imgSrc, this.title,this.source, this.link);
 }

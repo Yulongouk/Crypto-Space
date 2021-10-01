@@ -1,17 +1,14 @@
 import 'package:cryptospace/constraints/app_theme.dart';
+import 'package:cryptospace/constraints/keys.dart';
 import 'package:cryptospace/model/top_card.dart';
 import 'package:cryptospace/ui/widget/favorite_card.dart';
 import 'package:cryptospace/ui/widget/list_coin.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends HookConsumerWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   final List<TopCard> topCards = [
     TopCard('DogeCoin', '0.21', '0.31'),
     TopCard('MATIC', '1.085', '1.23'),
@@ -19,8 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context, WidgetRef ref) {
+     return Container(
       color: lightDark,
       child: Column(
         children: [
@@ -74,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          Expanded(child: ListCoin())
+        Expanded(key: Keys.NAV_LISTCOIN ,child: const ListCoin())
         ],
       ),
     );

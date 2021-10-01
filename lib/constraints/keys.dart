@@ -15,4 +15,6 @@ class Keys {
   static final NEWS_SCREEN = Key('news_screen');
   static final ACADEMY_SCREEN = Key('academy_screen');
   static final ACCOUNT_SCREEN = Key('account_screen');
+
+  static final NAV_LISTCOIN = Key('nav_listcoin');
 }

@@ -60,7 +60,7 @@ class Home extends HookConsumerWidget {
   Widget currentScreen(int index) {
     switch (index) {
       case 0:
-        return const HomeScreen();
+        return HomeScreen();
       case 1:
         return const AnalyzeScreen();
       case 2:
@@ -70,7 +70,7 @@ class Home extends HookConsumerWidget {
       case 4:
         return const AccountScreen();
       default:
-        return const HomeScreen();
+        return HomeScreen();
     }
   }
 }
