@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsScreen extends HookConsumerWidget {
   NewsScreen({Key? key}) : super(key: key);
@@ -72,7 +73,6 @@ class NewsScreen extends HookConsumerWidget {
                       width: 400,
                       child: TrendingNews(topnews: topnews, imgList: imgList)),
                 ),
-                
                 Row(
                   children: [
                     Text(
@@ -86,32 +86,37 @@ class NewsScreen extends HookConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height/2.3,
+                  height: MediaQuery.of(context).size.height / 2.3,
                   child: ListView.builder(
                     itemCount: topnews.length,
                     itemBuilder: (ctx, index) {
-                      return ListTile(
-                      minLeadingWidth: 100,
-                      leading: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15)),
-                          child: Image.network(topnews[index].imgSrc,
-                              fit: BoxFit.fill, width: 80, height: 80)),
-                      title:  Text(
-                        topnews[index].title,
-                        style: const TextStyle(
-                            fontFamily: 'OpenSans',
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        topnews[index].source,
-                        style: const TextStyle(
-                            fontFamily: 'OpenSans',
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    );
+                      return InkWell(
+                        onTap: () {
+                          launch(topnews[index].link);
+                        },
+                        child: ListTile(
+                          minLeadingWidth: 100,
+                          leading: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(15)),
+                              child: Image.network(topnews[index].imgSrc,
+                                  fit: BoxFit.fill, width: 80, height: 80)),
+                          title: Text(
+                            topnews[index].title,
+                            style: const TextStyle(
+                                fontFamily: 'OpenSans',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            topnews[index].source,
+                            style: const TextStyle(
+                                fontFamily: 'OpenSans',
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      );
                     },
                   ),
                 )

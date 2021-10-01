@@ -17,13 +17,16 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-     return Container(
-      color: lightDark,
+    return Container(
+      key: Keys.HOME_SCREEN,
       child: Column(
         children: [
           AppBar(
-            title: const Text('Crypto Space',
-                style: TextStyle(fontSize: 25, fontFamily: 'Coda')),
+            toolbarHeight: 65,
+            title: RichText(text: const TextSpan(style:  TextStyle(fontSize: 25, fontFamily: 'Coda'),
+            children: [
+               TextSpan(text: 'Crypto Space')
+            ]),),
             actions: <Widget>[
               IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
               IconButton(
@@ -71,7 +74,7 @@ class HomeScreen extends HookConsumerWidget {
               ],
             ),
           ),
-        Expanded(key: Keys.NAV_LISTCOIN ,child: const ListCoin())
+          Expanded(key: Keys.NAV_LISTCOIN, child: const ListCoin())
         ],
       ),
     );
