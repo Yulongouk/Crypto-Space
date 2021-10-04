@@ -66,7 +66,7 @@ class Home extends HookConsumerWidget {
       case 2:
         return NewsScreen();
       case 3:
-        return const AcademyScreen();
+        return AcademyScreen();
       case 4:
         return const AccountScreen();
       default:

@@ -16,7 +16,7 @@ class AnalyzerAvatar extends HookConsumerWidget {
       children: [
         SizedBox(width: 15,),
         Column(
-          children: [CircularProfileAvatar(analyzer.img),
+          children: [CircularProfileAvatar(analyzer.img, radius: 40,),
           SizedBox(height: 5,),
           AutoSizeText(analyzer.name, minFontSize: 10, maxFontSize: 15,style: TextStyle(color: lightgrey, fontFamily: 'OpenSans', fontSize: 15 ),)],
         ),

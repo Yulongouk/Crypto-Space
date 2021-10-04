@@ -36,94 +36,96 @@ class NewsScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       key: Keys.NEWS_SCREEN,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppBar(
-            toolbarHeight: 65,
-            title: RichText(
-              text: TextSpan(
-                  style: const TextStyle(fontSize: 25, fontFamily: 'Coda'),
-                  children: [
-                    const TextSpan(text: 'Crypto '),
-                    TextSpan(text: 'News', style: TextStyle(color: lightyellow))
-                  ]),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppBar(
+              toolbarHeight: 65,
+              title: RichText(
+                text: TextSpan(
+                    style: const TextStyle(fontSize: 25, fontFamily: 'Coda'),
+                    children: [
+                      const TextSpan(text: 'Crypto '),
+                      TextSpan(text: 'News', style: TextStyle(color: lightyellow))
+                    ]),
+              ),
+              elevation: 0,
             ),
-            elevation: 0,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Trending News",
-                  style: TextStyle(
-                      color: lightgrey,
-                      fontFamily: 'OpenSans',
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: SizedBox(
-                      height: 250,
-                      width: 400,
-                      child: TrendingNews(topnews: topnews, imgList: imgList)),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "Recent News",
-                      style: TextStyle(
-                          color: lightgrey,
-                          fontFamily: "OpenSans",
-                          fontSize: 22),
-                    )
-                  ],
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 2.3,
-                  child: ListView.builder(
-                    itemCount: topnews.length,
-                    itemBuilder: (ctx, index) {
-                      return InkWell(
-                        onTap: () {
-                          launch(topnews[index].link);
-                        },
-                        child: ListTile(
-                          minLeadingWidth: 100,
-                          leading: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(15)),
-                              child: Image.network(topnews[index].imgSrc,
-                                  fit: BoxFit.fill, width: 80, height: 80)),
-                          title: Text(
-                            topnews[index].title,
-                            style: const TextStyle(
-                                fontFamily: 'OpenSans',
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            topnews[index].source,
-                            style: const TextStyle(
-                                fontFamily: 'OpenSans',
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      );
-                    },
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Trending News",
+                    style: TextStyle(
+                        color: lightgrey,
+                        fontFamily: 'OpenSans',
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
                   ),
-                )
-              ],
-            ),
-          )
-        ],
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: SizedBox(
+                        height: 250,
+                        width: 400,
+                        child: TrendingNews(topnews: topnews, imgList: imgList)),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Recent News",
+                        style: TextStyle(
+                            color: lightgrey,
+                            fontFamily: "OpenSans",
+                            fontSize: 22),
+                      )
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 2.3,
+                    child: ListView.builder(
+                      itemCount: topnews.length,
+                      itemBuilder: (ctx, index) {
+                        return InkWell(
+                          onTap: () {
+                            launch(topnews[index].link);
+                          },
+                          child: ListTile(
+                            minLeadingWidth: 100,
+                            leading: ClipRRect(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(15)),
+                                child: Image.network(topnews[index].imgSrc,
+                                    fit: BoxFit.fill, width: 80, height: 80)),
+                            title: Text(
+                              topnews[index].title,
+                              style: const TextStyle(
+                                  fontFamily: 'OpenSans',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(
+                              topnews[index].source,
+                              style: const TextStyle(
+                                  fontFamily: 'OpenSans',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
