@@ -5,10 +5,9 @@ import 'package:cryptospace/ui/widget/carousel_dot.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class NewsScreen extends HookConsumerWidget {
+class NewsScreen extends StatelessWidget {
   NewsScreen({Key? key}) : super(key: key);
   final List<String> imgList = [
     'https://www.nasdaq.com/sites/acquia.prod/files/styles/1370x700/public/bitcoin_magazine/img_6302.png?h=33ada183&itok=WEoWWtne',
@@ -33,7 +32,7 @@ class NewsScreen extends HookConsumerWidget {
         'https://cointelegraph.com/news/traders-buy-the-bitcoin-dip-even-as-evergrande-s-implosion-rocks-stock-markets')
   ];
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Container(
       key: Keys.NEWS_SCREEN,
       child: SingleChildScrollView(
@@ -41,87 +40,101 @@ class NewsScreen extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppBar(
+              backgroundColor: lightDark,
               toolbarHeight: 65,
               title: RichText(
                 text: TextSpan(
                     style: const TextStyle(fontSize: 25, fontFamily: 'Coda'),
                     children: [
                       const TextSpan(text: 'Crypto '),
-                      TextSpan(text: 'News', style: TextStyle(color: lightyellow))
+                      TextSpan(
+                          text: 'News', style: TextStyle(color: lightyellow))
                     ]),
               ),
               elevation: 0,
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Trending News",
-                    style: TextStyle(
-                        color: lightgrey,
-                        fontFamily: 'OpenSans',
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Center(
-                    child: SizedBox(
-                        height: 250,
-                        width: 400,
-                        child: TrendingNews(topnews: topnews, imgList: imgList)),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Recent News",
-                        style: TextStyle(
-                            color: lightgrey,
-                            fontFamily: "OpenSans",
-                            fontSize: 22),
-                      )
-                    ],
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 2.3,
-                    child: ListView.builder(
-                      itemCount: topnews.length,
-                      itemBuilder: (ctx, index) {
-                        return InkWell(
-                          onTap: () {
-                            launch(topnews[index].link);
-                          },
-                          child: ListTile(
-                            minLeadingWidth: 100,
-                            leading: ClipRRect(
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(15)),
-                                child: Image.network(topnews[index].imgSrc,
-                                    fit: BoxFit.fill, width: 80, height: 80)),
-                            title: Text(
-                              topnews[index].title,
-                              style: const TextStyle(
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              topnews[index].source,
-                              style: const TextStyle(
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        );
-                      },
+            Container(
+              height: MediaQuery.of(context).size.height,
+              color: lightDark,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: SizedBox(
+                          height: 250,
+                          width: 400,
+                          child:
+                              TrendingNews(topnews: topnews, imgList: imgList)),
                     ),
-                  )
-                ],
+                    Row(
+                      children: [
+                        Text(
+                          "Recent News",
+                          style: TextStyle(
+                              color: lightgrey,
+                              fontFamily: "OpenSans",
+                              fontSize: 22),
+                        )
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 2.3,
+                      child: ListView.builder(
+                        itemCount: topnews.length,
+                        itemBuilder: (ctx, index) {
+                          return InkWell(
+                            onTap: () {
+                              launch(topnews[index].link);
+                            },
+                            child: ListTile(
+                              minLeadingWidth: 100,
+                              leading: ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15)),
+                                  child: Image.network(
+                                    topnews[index].imgSrc,
+                                    fit: BoxFit.fill,
+                                    width: 80,
+                                    height: 80,
+                                    loadingBuilder:
+                                        (context, child, loadingProgress) {
+                                      if (loadingProgress == null) return child;
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          color: lightyellow,
+                                        ),
+                                      );
+                                    },
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            const Icon(Icons.error)
+                                  )),
+                              title: Text(
+                                topnews[index].title,
+                                style: TextStyle(
+                                    fontFamily: 'OpenSans',
+                                    color: lightgrey,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(
+                                topnews[index].source,
+                                style: TextStyle(
+                                    fontFamily: 'OpenSans',
+                                    color: lightgrey,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
               ),
             )
           ],

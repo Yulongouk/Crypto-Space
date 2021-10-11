@@ -28,7 +28,9 @@ dependencies:
   carousel_slider: ^4.0.0-nullsafety.0
   url_launcher: ^6.0.12
   circular_profile_avatar: ^2.0.5
-  flutter_advanced_segment: ^2.0.1+2
+  flutter_facebook_auth: ^3.5.2
+  dependencies:
+  cached_network_image: ^3.1.0
 
 dev_dependencies:
   flutter_test:

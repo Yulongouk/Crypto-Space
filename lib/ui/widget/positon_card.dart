@@ -1,11 +1,17 @@
+import 'package:cryptospace/model/position.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PositionCard extends HookConsumerWidget {
-  const PositionCard({Key? key}) : super(key: key);
+class PositionCard extends StatefulWidget {
+  final Position position;
+  const PositionCard({Key? key, required this.position}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<PositionCard> createState() => _PositionCardState();
+}
+
+class _PositionCardState extends State<PositionCard> {
+  @override
+  Widget build(BuildContext context) {
     return Card(
         color: Colors.white,
         borderOnForeground: true,
@@ -36,41 +42,41 @@ class PositionCard extends HookConsumerWidget {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Size(BTC)',
                           style: TextStyle(color: Colors.black),
                         ),
-                        Text('0.004',
-                            style: TextStyle(
+                        Text(widget.position.size,
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold))
                       ],
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Unrealized PNL[%ROE]',
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          '0.05(+0.21%)',
-                          style: TextStyle(
+                          widget.position.unrealizedPNL,
+                          style: const TextStyle(
                               color: Colors.green, fontWeight: FontWeight.bold),
                         )
                       ],
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Margin',
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          '0.004',
-                          style: TextStyle(
+                          widget.position.margin,
+                          style: const TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         )
                       ],
@@ -82,28 +88,28 @@ class PositionCard extends HookConsumerWidget {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Entry Price',
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          '31750.00',
-                          style: TextStyle(
+                          widget.position.entryPrice,
+                          style: const TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         )
                       ],
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Mark Price',
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          '31736.60',
-                          style: TextStyle(
+                          widget.position.markPrice,
+                          style: const TextStyle(
                             color: Colors.black,
                           ),
                         )
@@ -111,16 +117,16 @@ class PositionCard extends HookConsumerWidget {
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Liquidation Price',
                           style: TextStyle(
                             color: Colors.black,
                           ),
                         ),
                         Text(
-                          '37948.20',
-                          style: TextStyle(
+                          widget.position.liquidationPrice,
+                          style: const TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         )
                       ],

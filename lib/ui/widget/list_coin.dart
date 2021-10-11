@@ -19,57 +19,24 @@ class _ListCoinState extends State<ListCoin> {
   ];
   @override
   Widget build(BuildContext context) {
-    String? dropdownValue;
     return Container(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
             color: deepDark),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           child: Column(
             children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
+              children: const [
+                 Text(
                   "Markets Currencies",
                   style: TextStyle(
                       color: Colors.amberAccent,
                       fontFamily: 'OpenSans',
                       fontSize: 20),
                 ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                  decoration: BoxDecoration(
-                      color: deepDark, borderRadius: BorderRadius.circular(10)),
-
-                  // dropdown below..
-                  child: DropdownButton<String>(
-                      value: dropdownValue,
-                      icon: const Icon(
-                        Icons.expand_more,
-                        color: Colors.amberAccent,
-                      ),
-                      iconSize: 25,
-                      underline: const SizedBox(),
-                      onChanged: (newValue) {
-                        setState(() {
-                          dropdownValue = newValue;
-                        });
-                      },
-                      items: <String>[
-                        'All market',
-                        'Binance',
-                        'CoinMarketCap',
-                        'Four'
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList()),
-                )
               ],
             ),
             Expanded(

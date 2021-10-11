@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TrendingNews extends StatefulWidget {
-  List<TopNews> topnews;
-  List<String> imgList;
-  TrendingNews({Key? key, required this.topnews, required this.imgList})
+  final List<TopNews> topnews;
+  final List<String> imgList;
+  const TrendingNews({Key? key, required this.topnews, required this.imgList})
       : super(key: key);
 
   @override
@@ -16,8 +16,7 @@ class TrendingNews extends StatefulWidget {
 }
 
 class _TrendingNewsState extends State<TrendingNews> {
-  
-    int _current = 0;
+  int _current = 0;
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSlider = widget.topnews
@@ -34,6 +33,13 @@ class _TrendingNewsState extends State<TrendingNews> {
                       fit: BoxFit.cover,
                       width: 400,
                       height: 200,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(color: lightyellow,),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace)=> const Center(child: Text('Errors Occurred!'),),
                     ),
                     Positioned(
                         bottom: 0,
@@ -69,10 +75,10 @@ class _TrendingNewsState extends State<TrendingNews> {
                   enlargeCenterPage: true,
                   aspectRatio: 2.0,
                   onPageChanged: (index, reason) {
-                setState(() {
-                  _current = index;
-                });
-              })),
+                    setState(() {
+                      _current = index;
+                    });
+                  })),
           const SizedBox(
             height: 20,
           ),
@@ -81,19 +87,19 @@ class _TrendingNewsState extends State<TrendingNews> {
             children: widget.topnews.map((url) {
               int index = widget.topnews.indexOf(url);
               return Container(
-              width: 8,
-              height: 8,
-              margin: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 3,
-              ),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _current == index
-                    ? lightyellow.withOpacity(0.9)
-                    : lightyellow.withOpacity(0.4),
-              ),
-            );
+                width: 8,
+                height: 8,
+                margin: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 3,
+                ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _current == index
+                      ? lightyellow.withOpacity(0.9)
+                      : lightyellow.withOpacity(0.4),
+                ),
+              );
             }).toList(),
           )
         ],

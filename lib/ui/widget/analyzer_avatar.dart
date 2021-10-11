@@ -3,22 +3,68 @@ import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:cryptospace/constraints/app_theme.dart';
 import 'package:cryptospace/model/analyzer.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AnalyzerAvatar extends HookConsumerWidget {
+class AnalyzerAvatar extends StatefulWidget {
   final Analyzer analyzer;
-  AnalyzerAvatar({Key? key, required this.analyzer}) : super(key: key);
+  final Function keycalled;
+  final int indexcalled;
+  final Function getIndex;
+  const AnalyzerAvatar({
+    Key? key,
+    required this.analyzer,
+    required this.keycalled,
+    required this.indexcalled,
+    required this.getIndex,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<AnalyzerAvatar> createState() => _AnalyzerAvatarState();
+}
+
+class _AnalyzerAvatarState extends State<AnalyzerAvatar> {
+  int index = 1;
+  int selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    bool _hasBeenPressed = false;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(width: 15,),
+        const SizedBox(
+          width: 10,
+        ),
         Column(
-          children: [CircularProfileAvatar(analyzer.img, radius: 40,),
-          SizedBox(height: 5,),
-          AutoSizeText(analyzer.name, minFontSize: 10, maxFontSize: 15,style: TextStyle(color: lightgrey, fontFamily: 'OpenSans', fontSize: 15 ),)],
+          children: [
+            CircularProfileAvatar(
+              widget.analyzer.img,
+              radius: 40,
+              onTap: () {
+                setState(() {
+                  _hasBeenPressed = !_hasBeenPressed;
+                  selectedIndex = widget.indexcalled;
+                  index = selectedIndex;
+                  print(_hasBeenPressed);
+                  print(selectedIndex);
+                  widget.keycalled(widget.analyzer.analyzeData.key);
+                  widget.getIndex(selectedIndex);
+                });
+              },
+              borderColor: ((selectedIndex == index) && _hasBeenPressed)
+                  ? Colors.amberAccent
+                  : Colors.white,
+              borderWidth: 2,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            AutoSizeText(
+              widget.analyzer.name,
+              minFontSize: 10,
+              maxFontSize: 15,
+              style: TextStyle(
+                  color: lightgrey, fontFamily: 'OpenSans', fontSize: 15),
+            )
+          ],
         ),
       ],
     );

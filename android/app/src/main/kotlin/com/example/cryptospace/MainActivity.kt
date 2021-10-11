@@ -1,4 +1,4 @@
-package com.example.cryptospace
+package com.crypto.cryptospace
 
 import io.flutter.embedding.android.FlutterActivity
 
