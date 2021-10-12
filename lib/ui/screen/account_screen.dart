@@ -33,14 +33,14 @@ class _AccountScreenState extends State<AccountScreen> {
                   children: [
                     CircularProfileAvatar(
                       // _userObj['picture']['data']['url'],
-                     'https://z-p3-scontent.fpnh5-3.fna.fbcdn.net/v/t1.6435-9/s526x395/242798350_2968744236724308_2757375587570040415_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE9dG25guQxyr6Jgn0KgtT8wgTwUgzepxfCBPBSDN6nF6Xp3xSlUmUJ_lvsG1kN846O-geyX4E81JWPiuosaXZ3&_nc_ohc=mDdcgEitbOUAX9sAmG0&_nc_ht=z-p3-scontent.fpnh5-3.fna&oh=f3d3fb9fdff4f41fd7b6b7529976a4c8&oe=61807B3A',
+                     'https://randomuser.me/api/portraits/men/11.jpg',
                       radius: 50,
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     AutoSizeText(
-                      "Andres Gome",
+                      "Sithan",
                       style: TextStyle(fontFamily: 'Open Sans',color: lightgrey),
                       maxFontSize: 25,
                       minFontSize: 20,
@@ -51,7 +51,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 2,
-              child: SettingsList(
+              child: SettingsList( physics: const NeverScrollableScrollPhysics(),
                 sections: [
                   SettingsSection(
                     title: 'Settings',
@@ -85,8 +85,8 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                   SettingsSection(
                     title: 'About',
-                    titleTextStyle: const TextStyle(
-                        fontSize: 20, color: Colors.amberAccent),
+                    titleTextStyle: TextStyle(
+                        fontSize: 20, color: lightyellow),
                     tiles: const [
                       SettingsTile(title: 'Connect Support'),
                       SettingsTile(title: 'Term and Privacy'),

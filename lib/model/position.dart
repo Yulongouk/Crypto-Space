@@ -5,6 +5,8 @@ class Position {
   final String unrealizedPNL;
   final String margin;
   final String liquidationPrice;
+  final String symbol;
 
-  Position(this.size, this.entryPrice, this.markPrice, this.unrealizedPNL, this.margin, this.liquidationPrice);
+  Position(this.symbol,this.size, this.entryPrice, this.markPrice, this.unrealizedPNL,
+      this.margin, this.liquidationPrice);
 }

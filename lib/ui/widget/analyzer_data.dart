@@ -1,12 +1,20 @@
 import 'package:cryptospace/constraints/app_theme.dart';
 import 'package:cryptospace/model/analyzer.dart';
+import 'package:cryptospace/ui/widget/openorder_card.dart';
 import 'package:cryptospace/ui/widget/positon_card.dart';
 import 'package:flutter/material.dart';
 
 class AnalyzerData extends StatefulWidget {
   final Analyzer analyzer;
   final String token;
-  const AnalyzerData({Key? key, required this.analyzer, required this.token})
+  final int plength;
+  final int olength;
+  const AnalyzerData(
+      {Key? key,
+      required this.plength,
+      required this.olength,
+      required this.analyzer,
+      required this.token})
       : super(key: key);
 
   @override
@@ -19,7 +27,7 @@ class _AnalyzerDataState extends State<AnalyzerData>
 
   @override
   void initState() {
-    _controller = TabController(length: 5, vsync: this);
+    _controller = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -67,7 +75,8 @@ class _AnalyzerDataState extends State<AnalyzerData>
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25)),
                             TextSpan(
-                              text: " = \$ 10",
+                              text:
+                                  " = \$ ${(double.parse(widget.analyzer.analyzeData.totalValue) * 50000).toStringAsFixed(3)}",
                               style: TextStyle(
                                   color: lightgrey.withOpacity(0.8),
                                   fontFamily: 'Open Sans',
@@ -98,17 +107,17 @@ class _AnalyzerDataState extends State<AnalyzerData>
                     labelColor: Colors.black,
                     unselectedLabelColor: Colors.black.withOpacity(0.5),
 
-                    tabs: const [
+                    tabs: [
                       // first tab [you can add an icon using the icon property]
                       Tab(
                           child: Text(
-                        'Position',
-                        style: TextStyle(fontSize: 15),
+                        'Position (${widget.plength.toString()})',
+                        style: const TextStyle(fontSize: 15),
                       )),
 
                       // second tab [you can add an icon using the icon property]
                       Tab(
-                        text: 'Open Order',
+                        text: 'Open Order (${widget.olength.toString()})',
                       ),
                     ],
                   ),
@@ -125,14 +134,19 @@ class _AnalyzerDataState extends State<AnalyzerData>
                 // first tab bar view widget
                 ListView(
                   scrollDirection: Axis.vertical,
-                  children: widget.analyzer.analyzeData.position.map((i) => PositionCard(position: i,)).toList(),
-                )
-,
+                  children: widget.analyzer.analyzeData.position
+                      .map((i) => PositionCard(
+                            position: i,
+                          ))
+                      .toList(),
+                ),
                 ListView(
                   scrollDirection: Axis.vertical,
-                  children: widget.analyzer.analyzeData.position.map((i) => PositionCard(position: i,)).toList(),)
+                  children: widget.analyzer.analyzeData.openorder
+                      .map((i) => OpenOrderCard(openorder: i))
+                      .toList(),
+                )
                 // second tab bar view widget
-                
               ],
             ),
           ),

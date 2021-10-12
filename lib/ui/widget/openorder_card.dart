@@ -1,15 +1,15 @@
-import 'package:cryptospace/model/position.dart';
+import 'package:cryptospace/model/open_order.dart';
 import 'package:flutter/material.dart';
 
-class PositionCard extends StatefulWidget {
-  final Position position;
-  const PositionCard({Key? key, required this.position}) : super(key: key);
+class OpenOrderCard extends StatefulWidget {
+  final OpenOrder openorder;
+  const OpenOrderCard({Key? key, required this.openorder}) : super(key: key);
 
   @override
-  State<PositionCard> createState() => _PositionCardState();
+  State<OpenOrderCard> createState() => _OpenOrderCardState();
 }
 
-class _PositionCardState extends State<PositionCard> {
+class _OpenOrderCardState extends State<OpenOrderCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -28,7 +28,7 @@ class _PositionCardState extends State<PositionCard> {
               children: [
                 Row(
                   children: [
-                    Text(widget.position.symbol,
+                    Text(widget.openorder.symbol,
                         style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class _PositionCardState extends State<PositionCard> {
                           'Size(BTC)',
                           style: TextStyle(color: Colors.black),
                         ),
-                        Text(widget.position.size,
+                        Text(widget.openorder.size,
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold))
@@ -61,7 +61,7 @@ class _PositionCardState extends State<PositionCard> {
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          widget.position.unrealizedPNL,
+                          widget.openorder.unrealizedPNL,
                           style: const TextStyle(
                               color: Colors.green, fontWeight: FontWeight.bold),
                         )
@@ -75,7 +75,7 @@ class _PositionCardState extends State<PositionCard> {
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          widget.position.margin,
+                          widget.openorder.margin,
                           style: const TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         )
@@ -94,7 +94,7 @@ class _PositionCardState extends State<PositionCard> {
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          widget.position.entryPrice,
+                          widget.openorder.entryPrice,
                           style: const TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         )
@@ -108,7 +108,7 @@ class _PositionCardState extends State<PositionCard> {
                           style: TextStyle(color: Colors.black),
                         ),
                         Text(
-                          widget.position.markPrice,
+                          widget.openorder.markPrice,
                           style: const TextStyle(
                             color: Colors.black,
                           ),
@@ -125,7 +125,7 @@ class _PositionCardState extends State<PositionCard> {
                           ),
                         ),
                         Text(
-                          widget.position.liquidationPrice,
+                          widget.openorder.liquidationPrice,
                           style: const TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         )

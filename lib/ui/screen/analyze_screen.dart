@@ -1,16 +1,17 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:cryptospace/constraints/app_theme.dart';
 import 'package:cryptospace/constraints/keys.dart';
 import 'package:cryptospace/model/analyzer.dart';
 import 'package:cryptospace/model/analyzer_data.dart';
 import 'package:cryptospace/model/open_order.dart';
 import 'package:cryptospace/model/position.dart';
-import 'package:cryptospace/ui/widget/analyzer_avatar.dart';
 import 'package:cryptospace/ui/widget/analyzer_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AnalyzeScreen extends StatefulWidget {
-  AnalyzeScreen({Key? key}) : super(key: key);
+  const AnalyzeScreen({Key? key}) : super(key: key);
 
   @override
   State<AnalyzeScreen> createState() => _AnalyzeScreenState();
@@ -23,98 +24,98 @@ class _AnalyzeScreenState extends State<AnalyzeScreen> {
           '0',
           '0.0032314',
           [
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
+            Position('Shiba Inu', '8.4', '31424234', '324241.10',
+                '0.34(+0.34%)', '0.043', '324544.01'),
+            Position('Etherum', '0.2304', '31424234', '324241.10',
+                '0.52(+0.34%)', '0.043', '324544.01'),
           ],
           [
-            OpenOrder('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
+            OpenOrder('Shiba Inu','0.004', '31424234', '324241.10', '0.12(+0.34%)', '0.043',
                 '324544.01'),
           ],
         ),
-        'https://z-p3-scontent.fpnh5-4.fna.fbcdn.net/v/t1.6435-1/p200x200/139347562_1620138781503509_7904836790243296150_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=7206a8&_nc_eui2=AeHwshaJOVVCMgluqhE_7WFFXwvpKzj-JyZfC-krOP4nJujPjGqW0EHIB3Qg4Uz1nPK5Sg_WkTWPI2BaLfoXI3BA&_nc_ohc=lA6d8Jk3OFAAX8_ZcL9&_nc_ht=z-p3-scontent.fpnh5-4.fna&oh=bd72db739a53dacaafccbbd95a35b090&oe=617BD02C',
+        'https://randomuser.me/api/portraits/men/79.jpg',
         'Dy Seng'),
     Analyzer(
         AnalyzeData(
           '1',
           '0.3423',
           [
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
+            Position('Solona', '0.004', '31424234', '324241.10',
+                '12.32(+0.34%)', '0.043', '324544.01'),
+            Position('BitCoin', '0.004', '31424234', '3433241.10',
+                '0.32(+0.34%)', '0.043', '324544.01'),
+            Position('Shiba Inu', '0.004', '31424234', '324241.10',
+                '0.32(+0.34%)', '0.043', '324544.01'),
           ],
           [
-            OpenOrder('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
+            OpenOrder('BitCoin','0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
                 '324544.01'),
-            OpenOrder('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
+            OpenOrder('XRP','0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
                 '324544.01'),
-            OpenOrder('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
+            OpenOrder('DogeCoin','0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
                 '324544.01'),
           ],
         ),
-        'https://z-p3-scontent.fpnh5-3.fna.fbcdn.net/v/t1.6435-9/s526x395/242798350_2968744236724308_2757375587570040415_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE9dG25guQxyr6Jgn0KgtT8wgTwUgzepxfCBPBSDN6nF6Xp3xSlUmUJ_lvsG1kN846O-geyX4E81JWPiuosaXZ3&_nc_ohc=mDdcgEitbOUAX9sAmG0&_nc_ht=z-p3-scontent.fpnh5-3.fna&oh=f3d3fb9fdff4f41fd7b6b7529976a4c8&oe=61807B3A',
+        'https://randomuser.me/api/portraits/women/91.jpg',
         'Mealea Ny'),
     Analyzer(
         AnalyzeData(
           '2',
           '0.0024453',
           [
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
+            Position('BitCoin', '0.004', '31424234', '324241.10',
+                '0.32(+0.34%)', '0.043', '324544.01'),
+            Position('Polygon', '0.004', '31424234', '324241.10',
+                '0.32(+0.34%)', '0.043', '324544.01'),
           ],
           [],
         ),
-        'https://z-p3-scontent.fpnh5-2.fna.fbcdn.net/v/t1.6435-9/236950857_2960155570910116_3930891087429248426_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeGiO5awmD9jLBqgcvso2uJ2Zw9TMfCIdv9nD1Mx8Ih2_y6GmttY7VRKraQYVdN83_EGgy6txWQ7HiFXHpQdUKgX&_nc_ohc=DgnPqtkeLG4AX_o8Xtd&_nc_ht=z-p3-scontent.fpnh5-2.fna&oh=487afd9ccf818afa6c9d9975fd2c33b4&oe=617F4A98',
-        'Sitho Nathan'),
+        'https://randomuser.me/api/portraits/men/27.jpg',
+        'Natan'),
     Analyzer(
         AnalyzeData(
           '3',
           '0.0000453',
           [
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
-            Position('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
-                '324544.01'),
+            Position('Etherum', '0.004', '31424234', '324241.10',
+                '0.32(+0.34%)', '0.043', '324544.01'),
+            Position('BitCoin', '0.004', '31424234', '324241.10',
+                '0.12(+0.34%)', '0.043', '324544.01'),
+            Position('Shiba Inu', '0.004', '31424234', '324241.10',
+                '0.32(+0.34%)', '0.043', '324544.01'),
           ],
           [
-            OpenOrder('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
+            OpenOrder('BitCoin','0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
                 '324544.01'),
-            OpenOrder('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
+            OpenOrder('Polkadot','0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
                 '324544.01'),
-            OpenOrder('0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
+            OpenOrder('Etherum','0.004', '31424234', '324241.10', '0.32(+0.34%)', '0.043',
                 '324544.01'),
           ],
         ),
-        'https://z-p3-scontent.fpnh5-2.fna.fbcdn.net/v/t1.6435-9/234529819_1551128198567866_8669492265546861328_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeE7tfyLcbOHl71qSi8Jt6Pvu_NFfyHDuNK780V_IcO40h03Veep3rC_IyI7H5rQVFC3ZQPLYyTF6_EcjVPiMK24&_nc_ohc=A64SmluEwMkAX-2fQtq&_nc_oc=AQl3oj9CYrLDIYV4VNjoHupBX7sFrNvBhIDEx48Vl4u-dbM7PoCkT0Zb9K1_-mAlFps&_nc_ht=z-p3-scontent.fpnh5-2.fna&oh=21d4dc56eb81dc20463c36b54bcd85aa&oe=6182550D',
+        'https://randomuser.me/api/portraits/men/11.jpg',
         'Sithan')
   ];
-  String parentString = 'parent String';
+  String token = 'token here';
   int index = 0;
   int num = 0;
   int selectedIndex = 0;
   void parentChange(newString) {
     setState(() {
-      parentString = newString;
+      token = newString;
     });
   }
 
   void dataIndex(ix) {
     setState(() {
       num = ix;
-      print(index.toString());
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    bool _hasBeenPress = false;
     return Container(
         color: lightDark,
         key: Keys.ANALYZE_SCREEN,
@@ -148,29 +149,58 @@ class _AnalyzeScreenState extends State<AnalyzeScreen> {
                       height: 10,
                     ),
                     SizedBox(
-                      height: 120,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        children: analyzer.map((i) {
-                          index = analyzer.indexOf(i);
-
-                          return AnalyzerAvatar(
-                            analyzer: i,
-                            keycalled: parentChange,
-                            indexcalled: index,
-                            getIndex: dataIndex,
-                          );
-                        }).toList(),
-                      ),
-                    ),
+                        height: 120,
+                        child: ListView.builder(
+                          itemCount: analyzer.length,
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  children: [
+                                    CircularProfileAvatar(
+                                      analyzer[index].img,
+                                      radius: 40,
+                                      onTap: () {
+                                        _hasBeenPress = !_hasBeenPress;
+                                        selectedIndex = index;
+                                        dataIndex(selectedIndex);
+                                      },
+                                      borderColor: selectedIndex == index
+                                          ? Colors.amberAccent
+                                          : Colors.white,
+                                      borderWidth: 2,
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    AutoSizeText(
+                                      analyzer[index].name,
+                                      minFontSize: 10,
+                                      maxFontSize: 15,
+                                      style: TextStyle(
+                                          color: lightgrey,
+                                          fontFamily: 'OpenSans',
+                                          fontSize: 15),
+                                    )
+                                  ],
+                                )
+                              ],
+                            );
+                          },
+                        )),
                   ],
                 ),
               ),
             ),
             Expanded(
                 child:
-                    AnalyzerData(analyzer: analyzer[num], token: parentString)),
+                    AnalyzerData(analyzer: analyzer[num], token: token, olength: analyzer[num].analyzeData.openorder.length, plength: analyzer[num].analyzeData.position.length),),
           ],
         ));
   }

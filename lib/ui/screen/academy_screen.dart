@@ -42,16 +42,8 @@ class _AcademyScreenState extends State<AcademyScreen>
   void initState() {
     _tabController = TabController(length: 4, vsync: this);
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) => loadData());
   }
 
-  Future loadData() async {
-    setState(() => isLoading = true);
-
-    await Future.wait(
-        videos.map((videos) => cachedImage(context, videos.imgLink)));
-    setState(() => isLoading = false);
-  }
 
   Future cachedImage(BuildContext context, String urlImage) =>
       precacheImage(CachedNetworkImageProvider(urlImage), context);
@@ -142,14 +134,6 @@ class _AcademyScreenState extends State<AcademyScreen>
                       return VideosCard(videos: i);
                     }).toList(),
                   ),
-
-                  // ListView.separated(
-                  //     itemBuilder: (context, index) {
-                  //       final urlImage = videos[index].imgLink;
-                  //       return '';
-                  //     },
-                  //     separatorBuilder: (context, index) => Divider(),
-                  //     itemCount: videos.length),
 
                   // second tab bar view widget
                   const Center(

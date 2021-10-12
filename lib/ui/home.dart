@@ -97,7 +97,7 @@ class Home extends HookConsumerWidget {
       case 0:
         return HomeScreen();
       case 1:
-        return AnalyzeScreen();
+        return const AnalyzeScreen();
       case 2:
         return NewsScreen();
       case 3:

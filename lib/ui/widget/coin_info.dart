@@ -37,7 +37,7 @@ class _CoinInfoState extends State<CoinInfo> {
             children: [
               Text(
                 widget.coinData.lastPrice + '\$',
-                style: const TextStyle(color: Colors.white, fontSize: 25),
+                style: const TextStyle(color: Colors.white, fontSize: 25, fontFamily: 'Quicksand'),
               ),
               Row(children: [
                 Text(

@@ -5,6 +5,6 @@ class AnalyzeData {
   final String key;
   final String totalValue;
   final List<Position> position;
-  final List<OpenOrder> openOrder;
-  AnalyzeData(this.key, this.totalValue,this.position, this.openOrder);
+  final List<OpenOrder> openorder;
+  AnalyzeData(this.key, this.totalValue,this.position, this.openorder);
 }
