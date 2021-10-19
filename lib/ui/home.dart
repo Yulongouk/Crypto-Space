@@ -1,78 +1,54 @@
+import 'package:cryptospace/blocs/navigation_bar/bloc/bottom_navigationbar_bloc.dart';
 import 'package:cryptospace/constraints/app_theme.dart';
-import 'package:cryptospace/constraints/keys.dart';
-import 'package:cryptospace/provider/navigation_provider.dart';
 import 'package:cryptospace/ui/screen/academy_screen.dart';
 import 'package:cryptospace/ui/screen/account_screen.dart';
 import 'package:cryptospace/ui/screen/analyze_screen.dart';
 import 'package:cryptospace/ui/screen/home_screen.dart';
 import 'package:cryptospace/ui/screen/news_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+// import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class Home extends HookConsumerWidget {
-  Home({Key? key}) : super(key: key);
-  final bool _isLoggedIn = true;
-  final Map _userObj = {};
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final navigation = ref.watch(navigationProvider);
-    // final login = ref.watch(loginProvider);
+  _HomeState createState() => _HomeState();
+}
 
+class _HomeState extends State<Home> {
+  final bool _isLoggedIn = true;
+  final List<Widget> screens = [
+    HomeScreen(),
+    const AnalyzeScreen(),
+    NewsScreen(),
+    const AcademyScreen(),
+    const AccountScreen(),
+  ];
+  final PageStorageBucket bucket = PageStorageBucket();
+  @override
+  Widget build(BuildContext context) {
     return _isLoggedIn
-        ? Scaffold(
-            body: currentScreen(navigation.index),
-            bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: lightDark,
-              currentIndex: navigation.index,
-              onTap: (index) {
-                ref.read(navigationProvider.notifier).selectPage(index);
-              },
-              selectedItemColor: lightyellow,
-              items: <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home,
-                    key: Keys.NAV_HOME,
-                  ),
-                  label: 'Home',
-                  backgroundColor: lightDark,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.person,
-                    key: Keys.NAV_ANALYZE,
-                  ),
-                  label: 'Analyze',
-                  backgroundColor: lightDark,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.featured_play_list,
-                    key: Keys.NAV_NEWS,
-                  ),
-                  label: 'News',
-                  backgroundColor: lightDark,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.school,
-                    key: Keys.NAV_ACADEMY,
-                  ),
-                  label: 'Academy',
-                  backgroundColor: lightDark,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.person,
-                    key: Keys.ACCOUNT_SCREEN,
-                  ),
-                  label: 'Account',
-                  backgroundColor: lightDark,
-                ),
-              ],
-            ),
-          )
+        ? BlocBuilder<BottomNavigationbarBloc, BottomNavigationbarState>(
+            builder: (context, state) {
+            if (state is HomeScreenState) {
+              return _activePage(currentIndex: state.index);
+            }
+            if (state is AnalyzeScreenState) {
+              return _activePage(currentIndex: state.index);
+            }
+            if (state is NewsScreenState) {
+              return _activePage(currentIndex: state.index);
+            }
+            if (state is AcademyScreenState) {
+              return _activePage(currentIndex: state.index);
+            }
+            if (state is AccountScreenState) {
+              return _activePage(currentIndex: state.index);
+            }
+            return Container();
+          })
         : Scaffold(
             body: Center(
               child: ElevatedButton(
@@ -83,7 +59,6 @@ class Home extends HookConsumerWidget {
                     FacebookAuth.instance.getUserData().then((userData) => {
                           // login(userData,_isLoggedIn,_userObj);
                           // ref.read(loginProvider.notifier).validate()
-
                         });
                   });
                 },
@@ -92,20 +67,51 @@ class Home extends HookConsumerWidget {
           );
   }
 
-  Widget currentScreen(int index) {
-    switch (index) {
-      case 0:
-        return HomeScreen();
-      case 1:
-        return const AnalyzeScreen();
-      case 2:
-        return NewsScreen();
-      case 3:
-        return const AcademyScreen();
-      case 4:
-        return const AccountScreen();
-      default:
-        return HomeScreen();
-    }
+  Scaffold _activePage({required int currentIndex}) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: PageStorage(bucket: bucket, child: screens[currentIndex]),
+          )
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: lightDark,
+          currentIndex: currentIndex,
+          onTap: (index) {
+            switch(index){
+              case 0: return BlocProvider.of<BottomNavigationbarBloc>(context)
+                  .add(LoadHomeScreen());
+              case 1: return BlocProvider.of<BottomNavigationbarBloc>(context)
+                  .add(LoadAnalyzeScreen());
+              case 2: return BlocProvider.of<BottomNavigationbarBloc>(context)
+                  .add(LoadNewsScreen());
+              case 3: return BlocProvider.of<BottomNavigationbarBloc>(context)
+                  .add(LoadAcademyScreen());
+              case 4: return BlocProvider.of<BottomNavigationbarBloc>(context)
+                  .add(LoadAccountScreen());
+              }
+    
+          },
+          selectedItemColor: lightyellow,
+          items: [
+            _bottomNavItem(icon: const Icon(Icons.home), label: 'Home'),
+            _bottomNavItem(icon: const Icon(Icons.person), label: 'Analyze'),
+            _bottomNavItem(
+                icon: const Icon(Icons.featured_play_list), label: 'News'),
+            _bottomNavItem(icon: const Icon(Icons.school), label: 'Academy'),
+            _bottomNavItem(icon: const Icon(Icons.person), label: 'Account')
+          ]),
+    );
   }
 }
+
+_bottomNavItem({required final Widget icon, required final String label}) {
+  return BottomNavigationBarItem(
+      icon: icon, label: label, backgroundColor: deepDark);
+}
+
+
+ 

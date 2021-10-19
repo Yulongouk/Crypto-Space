@@ -14,15 +14,14 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  hooks_riverpod: 1.0.0-dev.6
-  flutter_riverpod: 1.0.0-dev.6
+  bloc: 
+  flutter_bloc: ^7.3.1
+  equatable: ^2.0.3
   dio: ^4.0.0
   flutter_dotenv: ^5.0.0
   settings_ui: ^1.0.0
   auto_size_text: ^3.0.0-nullsafety.0
-  # flutter_secure_storage: ^4.1.0
   easy_localization: ^3.0.0
-  freezed_annotation:
   flutter_candlesticks:
   http: 
   carousel_slider: ^4.0.0-nullsafety.0
